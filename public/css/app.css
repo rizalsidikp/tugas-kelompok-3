@@ -1,0 +1,48 @@
+body {
+    overflow-y: scroll;
+    font-family: "Open Sans";
+    color: #212529;
+    background-color: #e6e8eb;
+}
+.text-center {
+    text-align: center;
+}
+.justify-center {
+    justify-content: center;
+}
+.full-width {
+    width: 100%;
+}
+
+.btn-outline-primary {
+    border-color: #2b519a;
+    color: #2b519a;
+    font-weight: bolder;
+}
+
+.btn-outline-primary:hover {
+    background-color: #2b519a;
+}
+
+.toast-alert {
+    top: 8px;
+    z-index: 3;
+}
+
+.toast-alert > .toast {
+    margin: auto;
+    max-width: 480px;
+}
+
+.toast-error {
+    box-shadow: 0 0.5rem 1rem rgba(220, 53, 69, 0.1);
+}
+.toast-success {
+    box-shadow: 0 0.5rem 1rem rgba(40, 167, 69, 0.1);
+}
+.no-padding {
+    padding: 0;
+}
+.no-padding-right {
+    padding-right: 0;
+}

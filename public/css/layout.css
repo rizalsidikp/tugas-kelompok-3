@@ -1,0 +1,67 @@
+.layout-container {
+    background-color: #2b519a;
+    padding: 20px 60px;
+    font-size: 14px;
+}
+.layout-title {
+    color: white;
+    font-weight: bold;
+}
+.layout-logout {
+    color: white;
+    background-color: transparent;
+    transition: all ease 0.5s;
+    outline: none;
+    border: none;
+}
+.layout-logout:hover {
+    transition: all ease 0.5s;
+    color: #dee9fd;
+}
+.layout-logout:focus {
+    outline: none;
+    border: none;
+}
+.layout-sidebar {
+    background-color: white;
+    margin: 0;
+    min-height: 100%;
+    box-shadow: 4px 2px 10px 0px rgba(93, 93, 93, 0.4);
+    -webkit-box-shadow: 4px 2px 10px 0px rgba(93, 93, 93, 0.4);
+    -moz-box-shadow: 4px 2px 10px 0px rgba(93, 93, 93, 0.4);
+}
+.layout-sidebar > h4 {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
+}
+.layout-content {
+    padding: 40px 60px;
+    min-height: calc(100vh - 63px - 39px);
+}
+.line {
+    margin: auto;
+    width: calc(100% - 32px);
+    height: 1px;
+    margin-bottom: 40px;
+    background-color: #2b519a;
+}
+.menu-item {
+    cursor: pointer;
+    padding: 16px 20px;
+    transition: background ease 1s;
+    margin-bottom: 12px;
+}
+.menu-item:hover {
+    transition: background ease 0.5s;
+    background-color: #2b519a;
+    color: #fff;
+}
+.layout-footer {
+    background-color: #001439;
+    color: white;
+    padding: 12px 60px;
+    font-size: 10px;
+}
