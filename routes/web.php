@@ -36,3 +36,5 @@ Route::patch('/cart/{cart}', [\App\Http\Controllers\CartController::class, 'upda
 Route::delete('/cart/{cart}', [\App\Http\Controllers\CartController::class, 'delete_cart'])->name('delete_cart')->middleware('auth');
 
 Route::post('/checkout', [\App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout')->middleware('auth');
+Route::get('/order', [\App\Http\Controllers\OrderController::class, 'index_order'])->name('index_order')->middleware('auth');
+Route::get('/order/{order}', [\App\Http\Controllers\OrderController::class, 'show_order'])->name('show_order')->middleware('auth');

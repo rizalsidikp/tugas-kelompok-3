@@ -10,18 +10,18 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
+        'orders_id',
         'product_id',
         'amount',
     ];
 
     public function order()
     {
-        return $this->hashOne(Orders::class);
+        return $this->belongsTo(orders::class);
     }
 
     public function product()
     {
-        return $this->hashOne(product::class);
+        return $this->belongsTo(product::class);
     }
 }

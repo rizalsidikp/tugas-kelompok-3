@@ -21,7 +21,7 @@ class product extends Model
 
     public function transactions()
     {
-        return $this->belongsTo(orders::class);
+        return $this->hasMany(Transaction::class);
     }
 
     public function carts()

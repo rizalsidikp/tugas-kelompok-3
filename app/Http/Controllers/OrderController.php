@@ -37,7 +37,7 @@ class OrderController extends Controller
 
             Transaction::create([
                 'amount' => $cart->amount,
-                'order_id' => $order->id,
+                'orders_id' => $order->id,
                 'product_id' => $cart->product_id
             ]);
 
@@ -46,5 +46,17 @@ class OrderController extends Controller
 
         return Redirect::back();
 
+    }
+
+    public function index_order()
+    {
+        $orders = orders::all();
+        return view('orders.index_order', compact('orders'));
+    }
+
+    public function show_order(orders $order)
+    
+    {
+        return view('orders.show_order', compact('order'));
     }
 }
