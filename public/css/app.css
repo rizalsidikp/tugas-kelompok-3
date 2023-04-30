@@ -46,3 +46,6 @@ body {
 .no-padding-right {
     padding-right: 0;
 }
+.page-title {
+    margin-bottom: 20px;
+}
