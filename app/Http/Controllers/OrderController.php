@@ -75,5 +75,15 @@ class OrderController extends Controller
         return Redirect::back();
     }
 
+    public function confirm_payment(orders $order)
+    {
+        $order->update([
+            'confirmed' => true
+        ]);
+
+        return Redirect::back();
+
+    }
+
 
 }

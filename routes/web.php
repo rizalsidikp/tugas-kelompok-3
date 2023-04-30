@@ -39,3 +39,4 @@ Route::post('/checkout', [\App\Http\Controllers\OrderController::class, 'checkou
 Route::get('/order', [\App\Http\Controllers\OrderController::class, 'index_order'])->name('index_order')->middleware('auth');
 Route::get('/order/{order}', [\App\Http\Controllers\OrderController::class, 'show_order'])->name('show_order')->middleware('auth');
 Route::post('/order/{order}/pay', [\App\Http\Controllers\OrderController::class, 'submit_payment_receipt'])->name('submit_payment_receipt')->middleware('auth');
+Route::post('/order/{order}/confirm', [\App\Http\Controllers\OrderController::class, 'confirm_payment'])->name('confirm_payment')->middleware('auth');
