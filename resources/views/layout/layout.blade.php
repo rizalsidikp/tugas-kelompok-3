@@ -50,11 +50,13 @@
                                 Hello, {{ $user->name }}
                             </div>
                             <div class="col-md-6 text-right">
-                                <div class="inline">
-                                    <form action="{{ route('show_cart') }}" method="get">
-                                        <button type="submit" class="layout-logout">Carts</button>
-                                    </form>
-                                </div>
+                                @if (!Auth::user()->is_admin == false || $user->role != 'staff')
+                                    <div class="inline">
+                                        <form action="{{ route('show_cart') }}" method="get">
+                                            <button type="submit" class="layout-logout">Carts</button>
+                                        </form>
+                                    </div>
+                                @endif
                                 <div class="inline">
                                     <form method="post" action="{{ route('logout') }}">
                                         @csrf

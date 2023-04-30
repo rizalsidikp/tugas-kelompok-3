@@ -50,20 +50,21 @@
             </div>
         @else
         @endif
-
-        <div class="col-md-auto">
-            <form action="{{ route('add_to_cart', $product) }}" method="POST">
-                @csrf
-                <div class="row">
-                    <div class="col-md-auto">
-                        <input type="number" class="form-control" name="amount" value=1>
+        @if (!Auth::user()->is_admin == false || $user->role != 'staff')
+            <div class="col-md-auto">
+                <form action="{{ route('add_to_cart', $product) }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <input type="number" class="form-control" name="amount" value=1>
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-info"> Add to Cart</button>
+                        </div>
                     </div>
-                    <div class="col-md-auto">
-                        <button type="submit" class="btn btn-info"> Add to Cart</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
     </div>
 @endsection
 @section('layout-scripts')

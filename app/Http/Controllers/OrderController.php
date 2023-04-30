@@ -51,14 +51,33 @@ class OrderController extends Controller
 
     public function index_order()
     {
-        $orders = orders::all();
+        $user = Auth::user();
+        $is_admin = $user->is_admin || $user->role == 'staff';
+        if ($is_admin)
+        {
+            $orders = orders::all();
+        }
+        else
+        {
+            $orders = orders::where('user_id', $user->id)->get();
+        }
+        
         return view('orders.index_order', compact('orders'));
     }
 
     public function show_order(orders $order)
     
     {
-        return view('orders.show_order', compact('order'));
+        $user = Auth::user();
+        $is_admin = $user->is_admin || $user->role == 'staff';
+
+        if ($is_admin || $order->user_id == $user->id)
+        {
+            return view('orders.show_order', compact('order'));
+        }
+
+        return Redirect::route('index_order');
+
     }
 
     public function submit_payment_receipt(orders $order, Request $request)
