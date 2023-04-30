@@ -19,9 +19,9 @@ class product extends Model
         'gambar'
     ];
 
-    public function orders()
+    public function transactions()
     {
-        return $this->belongsToMany(orders::class);
+        return $this->belongsTo(orders::class);
     }
 
     public function carts()

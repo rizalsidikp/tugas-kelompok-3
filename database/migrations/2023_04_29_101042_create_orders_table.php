@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->boolean('confirmed')->default(false);
-            $table->string('payment_receipt');
+            $table->string('payment_receipt')->nullable();
             $table->ForeignId('user_id')-> constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

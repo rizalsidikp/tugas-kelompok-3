@@ -20,8 +20,8 @@ class orders extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function products()
+    public function transactions()
     {
-        return $this->belongsToMany(product::class);
+        return $this->belongsTo(Transaction::class);
     }
 }

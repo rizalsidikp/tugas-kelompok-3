@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,8 @@ Route::delete('/product/{product}', [\App\Http\Controllers\ProductController::cl
 
 
 Route::post('/cart/{product}', [\App\Http\Controllers\CartController::class, 'add_to_cart'])->name('add_to_cart')->middleware('auth');
+Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show_cart'])->name('show_cart')->middleware('auth');
+Route::patch('/cart/{cart}', [\App\Http\Controllers\CartController::class, 'update_cart'])->name('update_cart')->middleware('auth');
+Route::delete('/cart/{cart}', [\App\Http\Controllers\CartController::class, 'delete_cart'])->name('delete_cart')->middleware('auth');
+
+Route::post('/checkout', [\App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout')->middleware('auth');
