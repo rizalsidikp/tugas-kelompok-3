@@ -33,6 +33,8 @@ Route::middleware(['staff', 'admin', 'addUserData'])->group(function () {
 
 Route::middleware(['admin', 'addUserData'])->group(function () {
 
+  Route::resource('customer', CustomerController::class);
+
 });
 
 Route::middleware(['auth', 'addUserData'])->group(function () {

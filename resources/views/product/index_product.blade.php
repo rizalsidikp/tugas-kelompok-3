@@ -7,9 +7,13 @@
             <h2>List Product</h2>
         </div>
         <div class="col-md-4 text-right">
-            <form action="{{ route('create_product') }}" method="get">
-                <button type="submit" class="btn btn-primary">Add New Product</button>
-            </form>
+            @if ($user->is_admin == true || $user->role == 'staff')
+                <form action="{{ route('create_product') }}" method="get">
+                    <button type="submit" class="btn btn-primary">Add New Product</button>
+                </form>
+            @else
+            @endif
+
         </div>
     </div>
     <table class="table table-striped">

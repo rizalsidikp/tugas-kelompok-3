@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'ttl',
+        'jenis_kelamin',
+        'alamat',
+        'ktp',
         'login_attempts',
         'last_login_attempt'
     ];
