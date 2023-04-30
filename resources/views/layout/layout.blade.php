@@ -32,6 +32,7 @@ Product Management Application
             <h4>PMA - T2</h4>
             <div class="line"></div>
             <div class="menu-item" onclick="onClickMenu('/product')">Product</div>
+            <div class="menu-item" onclick="onClickMenu('/order')">Order</div>
             <div class="menu-item">Customer</div>
             <div class="menu-item">User</div>
         </div>
