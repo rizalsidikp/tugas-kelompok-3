@@ -7,7 +7,7 @@
 @section('layout-content')
 <div class="row page-title">
     <div class="col-md-8">
-        <h2>Add New Product</h2>
+        <h2>Detail Product - {{$product->nama}}</h2>
     </div>
     <div class="col-md-4 text-right">
         <form action="{{ route('index_product') }}"><button type="submit" class="btn btn-warning">Kembali</button>
