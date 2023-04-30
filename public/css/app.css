@@ -49,3 +49,6 @@ body {
 .page-title {
     margin-bottom: 20px;
 }
+.justify-end {
+    justify-content: end;
+}

@@ -1,41 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit {{ $product->nama }}</title>
-</head>
-
-<body>
-    <form action="{{ route('update_product', $product) }}" method="post" enctype="multipart/form-data">
-        @method('patch')
-        @csrf
-        <label for="">Nama Barang</label>
-        <input type="text" name="nama" placeholder="nama" value="{{ $product->nama }}">
-        <br>
-        <label for="">Deskripsi</label>
-        <input type="text" name="deskripsi" placeholder="deskripsi" value="{{ $product->deskripsi }}">
-        <br>
-        <label for="">Jenis Barang</label>
-        <input type="text" name="jenis_barang" placeholder="jenis_barang" value="{{ $product->jenis_barang }}">
-        <br>
-        <label for="">Stock</label>
-        <input type="text" name="stock" placeholder="stock" value={{ $product->stock }}>
-        <br>
-        <label for="">Harga Beli</label>
-        <input type="text" name="harga_beli" placeholder="harga_beli" value={{ $product->harga_beli }}>
-        <br>
-        <label for="">Harga Jual</label>
-        <input type="text" name="harga_jual" placeholder="harga_jual" value={{ $product->harga_jual }}>
-        <br>
-        <label for="">Upload Gambar</label>
-        <input type="file" name="gambar">
-        <br>
-        <button type="submit">submit data</button>
-    </form>
-
-</body>
-
-</html>
+@extends('layout/layout')
+@section('layout-style')
+@endsection
+@section('layout-title')
+Edit {{ $product->nama }} -
+@endsection
+@section('layout-content')
+<div class="row page-title">
+    <div class="col-md-12">
+        <h2>Edit Product - {{ $product->name }}</h2>
+    </div>
+</div>
+<form action="{{ route('update_product', $product) }}" method="post" enctype="multipart/form-data">
+    @method('patch')
+    @csrf
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="nama">Nama</label>
+            <input id="nama" type="text" class="form-control" name="nama" placeholder="Nama"
+                value="{{ $product->nama }}">
+        </div>
+        <div class="col-md-6">
+            <label for="deskripsi">Deskripsi</label>
+            <input id="deskripsi" type="text" class="form-control" name="deskripsi" placeholder="Deskripsi"
+                value="{{ $product->deskripsi }}">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="jenis_barang">Jenis Barang</label>
+            <input id="jenis_barang" type="text" class="form-control" name="jenis_barang" placeholder="Jenis Barang"
+                value="{{ $product->jenis_barang }}">
+        </div>
+        <div class="col-md-6">
+            <label for="stok">Stok</label>
+            <input id="stok" type="text" class="form-control" name="stock" placeholder="Stok" value={{ $product->stock
+            }}>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="harga_beli">Harga Beli</label>
+            <input id="harga_beli" type="text" class="form-control" name="harga_beli" placeholder="Harga Beli" value={{
+                $product->harga_beli }}>
+        </div>
+        <div class="col">
+            <label for="harga_jual">Harga Jual</label>
+            <input id="harga_jual" type="text" class="form-control" name="harga_jual" placeholder="Harga Jual" value={{
+                $product->harga_jual }}>
+        </div>
+    </div>
+    <div class="custom-file mb-3">
+        <label for="gambar_product">Gambar Product</label><br />
+        <input id="gambar_product" type="file" name="gambar">
+    </div>
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary">Edit Product</button>
+    </div>
+</form>
+@endsection
+@section('layout-scripts')
+@endsection

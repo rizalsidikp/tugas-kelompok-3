@@ -1,5 +1,6 @@
 @extends('app')
 @section('title')
+@yield('layout-title')
 Product Management Application
 @endsection
 @section('style')
