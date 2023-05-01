@@ -21,7 +21,8 @@
                 @endif
 
                 <div class="card-body">
-                    <form action="{{ route('users.update', $datauser->id) }}" method="POST">
+                    <form action="{{ route('users.update', $datauser->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

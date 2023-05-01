@@ -68,11 +68,17 @@ class UserController extends Controller
             $file = $request->file('ktp');
             $path = time() . '_' . $request->nama . '.' . $file->getClientOriginalExtension();
 
-            Storage::disk('local')->put('public/images/fotoktp' . $path, file_get_contents($file));
+            Storage::disk('local')->put('public/images/fotoktp/' . $path, file_get_contents($file));
 
             $user->create([
-                'nama' => $request->nama,
-                'deskripsi' => $request->deskripsi,
+                'name' => $request->name,
+                'role' => $request->role,
+                'email' => $request->email,
+                'password' => $request->password,
+                'ttl' => $request->ttl,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->email,
+                'ktp' => $path
             ]);
         }
 
@@ -137,11 +143,11 @@ class UserController extends Controller
         } else {
             if ($request->hasFile('ktp')) {
                 // Delete old image
-                Storage::disk('public')->delete('images/fotoktp' . $user->ktp);
+                Storage::disk('public')->delete('images/fotoktp/' . $user->ktp);
                 // Upload new image
                 $file = $request->file('ktp');
                 $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
-                Storage::disk('public')->putFileAs('images/fotoktp', $file, $path);
+                Storage::disk('public')->putFileAs('images/fotoktp/', $file, $path);
 
                 // Update product with new image path
                 $user->ktp = $path;
