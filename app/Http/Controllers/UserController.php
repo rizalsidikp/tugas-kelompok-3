@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -60,30 +61,21 @@ class UserController extends Controller
 
         $user = Auth::user();
         $is_admin = $user->is_admin;
-        if ($is_admin)
-        {
+        if ($is_admin) {
             $user->create($request->all());
-        }
-        else
-        {
+        } else {
             $file = $request->file('ktp');
-            $path = time() . '_' . $request-> name . '.' . $file->getClientOriginalExtension();
+            $path = time() . '_' . $request-> nama . '.' . $file->getClientOriginalExtension();
     
-            Storage::disk('local')->put('public/images/fotoktp/' . $path, file_get_contents($file));
+            Storage::disk('local')->put('public/images/fotoktp' . $path, file_get_contents($file));
 
             $users ->create([
-                'name' => $request->name,
-                'role' => $request->role,
-                'email' => $request->email,
-                'password' => $request->password,
-                'ttl' => $request->ttl,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->email,
-                'ktp' => $path
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
             ]);
         }
-        
-       
+
+
         return redirect()->route('users.index')
             ->with('success', 'customer created successfully.');
     }
@@ -129,6 +121,8 @@ class UserController extends Controller
             'password' => 'required',
             'role' => 'required',
         ]);
+
+        $request['password'] = Hash::make($request['password']);
 
         $user = Auth::user();
         $is_admin = $user->is_admin;
