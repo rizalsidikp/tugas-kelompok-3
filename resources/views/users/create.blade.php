@@ -68,7 +68,7 @@
                                     required="required" class="@error('rtype') is-invalid @enderror">
                             </div>
 
-                            @if (!Auth::user()->is_admin == false || $user->role == 'staff')
+                            @if ($user->role == 'staff')
                                 <div class="form-group mb-2">
                                     <label>Tempat Tanggal Lahir</label>
                                     <input type="text" name="ttl" placeholder="ttl" class="form-control"

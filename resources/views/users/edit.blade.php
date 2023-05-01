@@ -21,29 +21,28 @@
                     @endif
 
                     <div class="card-body">
-                        <form action="{{ route('users.update', $user->id) }}" method="POST">
+                        <form action="{{ route('users.update', $datauser->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-
 
                             <div class="form-group mb-2">
                                 <label>Nama Lengkap</label>
                                 <input type="text" name="name" placeholder="Masukkan Nama" class="form-control"
-                                    required="required" value="{{ $user->name }}"
+                                    required="required" value="{{ $datauser->name }}"
                                     class="@error('name') is-invalid @enderror">
                             </div>
 
                             <div class="form-group mb-2">
                                 <label>Role</label>
                                 <input type="text" name="role" placeholder="Role" class="form-control"
-                                    required="required" value="{{ $user->role }}"
+                                    required="required" value="{{ $datauser->role }}"
                                     class="@error('role') is-invalid @enderror">
                             </div>
 
                             <div class="form-group mb-2">
                                 <label>Email</label>
                                 <input type="text" name="email" placeholder="email" class="form-control"
-                                    required="required" value="{{ $user->email }}"
+                                    required="required" value="{{ $datauser->email }}"
                                     class="@error('email') is-invalid @enderror">
                             </div>
 
@@ -59,23 +58,23 @@
                                     required="required" class="@error('rtype') is-invalid @enderror">
                             </div>
 
-                            @if (!Auth::user()->is_admin == false || $user->role == 'staff')
+                            @if ($datauser->role == 'staff')
                                 <div class="form-group mb-2">
                                     <label>Tempat Tanggal Lahir</label>
                                     <input type="text" name="ttl" placeholder="ttl" class="form-control"
-                                        required="required" value="{{ $user->ttl }}"
+                                        required="required" value="{{ $datauser->ttl }}"
                                         class="@error('ttl') is-invalid @enderror">
                                 </div>
                                 <div class="form-group mb-2">
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" placeholder="alamat" class="form-control"
-                                        required="required" value="{{ $user->alamat }}"
+                                        required="required" value="{{ $datauser->alamat }}"
                                         class="@error('alamat') is-invalid @enderror">
                                 </div>
                                 <div class="form-group mb-2">
                                     <label>Upload KTP</label>
                                     <input type="file" name="ktp" placeholder="ktp" class="form-control"
-                                        required="required" value="{{ $user->ktp }}"
+                                        required="required" value="{{ $datauser->ktp }}"
                                         class="@error('ktp') is-invalid @enderror">
                                 </div>
                             @endif
