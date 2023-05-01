@@ -33,7 +33,7 @@
                 <div class="line"></div>
                 <div class="menu-item" onclick="onClickMenu('/product')">Product</div>
                 <div class="menu-item" onclick="onClickMenu('/order')">Order</div>
-                @if ($user->is_admin == true || $user->role == 'staff')
+                @if ($user->role == 'staff')
                     <div class="menu-item" onclick="onClickMenu('/users')">Customer</div>
                 @else
                 @endif

@@ -50,6 +50,13 @@
                                 <input type="text" name="password" placeholder="password" class="form-control"
                                     required="required" class="@error('password') is-invalid @enderror">
                             </div>
+
+                            <div class="form-group mb-2">
+                                <label>Retype Password</label>
+                                <input type="text" name="rtype" placeholder="rtype" class="form-control"
+                                    required="required" class="@error('rtype') is-invalid @enderror">
+                            </div>
+
                             @if (!Auth::user()->is_admin == false || $user->role == 'staff')
                                 <div class="form-group mb-2">
                                     <label>Tempat Tanggal Lahir</label>

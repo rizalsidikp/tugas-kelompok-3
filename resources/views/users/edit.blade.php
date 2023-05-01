@@ -53,6 +53,33 @@
                                     required="required" class="@error('password') is-invalid @enderror">
                             </div>
 
+                            <div class="form-group mb-2">
+                                <label>Retype Password</label>
+                                <input type="text" name="rtype" placeholder="rtype" class="form-control"
+                                    required="required" class="@error('rtype') is-invalid @enderror">
+                            </div>
+
+                            @if (!Auth::user()->is_admin == false || $user->role == 'staff')
+                                <div class="form-group mb-2">
+                                    <label>Tempat Tanggal Lahir</label>
+                                    <input type="text" name="ttl" placeholder="ttl" class="form-control"
+                                        required="required" value="{{ $user->ttl }}"
+                                        class="@error('ttl') is-invalid @enderror">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label>Alamat</label>
+                                    <input type="text" name="alamat" placeholder="alamat" class="form-control"
+                                        required="required" value="{{ $user->alamat }}"
+                                        class="@error('alamat') is-invalid @enderror">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label>Upload KTP</label>
+                                    <input type="file" name="ktp" placeholder="ktp" class="form-control"
+                                        required="required" value="{{ $user->ktp }}"
+                                        class="@error('ktp') is-invalid @enderror">
+                                </div>
+                            @endif
+
                             <button type="submit" class="btn btn-success">SIMPAN</button>
                             <button type="reset" class="btn btn-warning">RESET</button>
                             <button type="button" class="btn btn-danger" onclick="history.back()">CANCEL</button>
