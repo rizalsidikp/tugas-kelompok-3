@@ -119,7 +119,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'role' => 'required',
         ]);
 
         $user = Auth::user();
@@ -140,7 +139,6 @@ class UserController extends Controller
 
                 $user->update([
                     'name' => $request->name,
-                    'role' => $request->role,
                     'email' => $request->email,
                     'ttl' => $request->ttl,
                     'jenis_kelamin' => $request->jenis_kelamin,
