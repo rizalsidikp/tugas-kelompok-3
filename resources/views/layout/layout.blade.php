@@ -50,7 +50,7 @@
                                 Hello, {{ $user->name }}
                             </div>
                             <div class="col-md-6 text-right">
-                                @if (!Auth::user()->is_admin == false || $user->role != 'staff')
+                                @if ($user->role == 'customer')
                                     <div class="inline">
                                         <form action="{{ route('show_cart') }}" method="get">
                                             <button type="submit" class="layout-logout">Carts</button>
