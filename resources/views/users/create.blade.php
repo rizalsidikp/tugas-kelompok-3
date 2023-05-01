@@ -32,11 +32,22 @@
                             </div>
 
                             <div class="form-group mb-2">
-                                <label>Role</label>
-                                <input type="text" name="role" placeholder="Role" class="form-control"
-                                    required="required" value="{{ old('role') }}"
-                                    class="@error('role') is-invalid @enderror">
+                                <label for="role">Role</label>
+                                <select id="role" name="role"
+                                    class="form-control @error('role') is-invalid @enderror" required>
+                                    <option value="">Pilih Role</option>
+                                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="staff" {{ old('role') == 'staff' ? 'selected' : '' }}>Staff</option>
+                                    <option value="customer" {{ old('role') == 'customer' ? 'selected' : '' }}>Customer
+                                    </option>
+                                </select>
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+
 
                             <div class="form-group mb-2">
                                 <label>Email</label>

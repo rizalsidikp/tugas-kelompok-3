@@ -33,6 +33,11 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Role</th>
+                            @if (!Auth::user()->is_admin == false || $user->role == 'staff')
+                                <th>Ttl</th>
+                                <th>Alamat</th>
+                                <th>Foto KTP</th>
+                            @endif
                             <th colspan="2" class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -49,6 +54,11 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->role }}</td>
+                                    @if (!Auth::user()->is_admin == false || $user->role == 'staff')
+                                        <td>{{ $data->ttl }}</td>
+                                        <td>{{ $data->alamat }}</td>
+                                        <td>{{ $data->ktp }}</td>
+                                    @endif
                                     <td>
                                         <form action="{{ route('users.destroy', $data->id) }}" method="POST">
                                             <a class="btn btn-primary" href="{{ route('users.edit', $data->id) }}">Edit</a>
