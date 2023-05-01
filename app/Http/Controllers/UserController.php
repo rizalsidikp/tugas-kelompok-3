@@ -61,6 +61,8 @@ class UserController extends Controller
         $request['password'] = Hash::make($request['password']);
 
 
+        $request['password'] = Hash::make($request['password']);
+
         $user = Auth::user();
         $is_admin = $user->is_admin;
         if ($is_admin) {
@@ -130,8 +132,7 @@ class UserController extends Controller
         } else {
             if ($request->hasFile('ktp')) {
                 // Delete old image
-                Storage::disk('public')->delete('images/fotoktp' . $product->gambar);
-
+                Storage::disk('public')->delete('images/fotoktp' . $user->ktp);
                 // Upload new image
                 $file = $request->file('ktp');
                 $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
