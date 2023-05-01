@@ -7,7 +7,7 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header">
-                    TAMBAH SISWA
+                    TAMBAH USER
                 </div>
 
                 @if ($errors->any())
