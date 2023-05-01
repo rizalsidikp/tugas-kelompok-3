@@ -31,15 +31,16 @@
                                 class="@error('name') is-invalid @enderror">
                         </div>
 
+                        @if ($user->role == 'admin')
                         <div class="form-group mb-2">
                             <label for="role">Role</label>
                             <select id="role" name="role" class="form-control @error('role') is-invalid @enderror"
                                 required>
                                 <option value="">Pilih Role</option>
-                                <option value="staff" {{ old('role')=='staff' ? 'selected' : '' }}>Staff
+                                <option value="admin">
+                                    Admin
                                 </option>
-                                <option value="customer" {{ old('role')=='customer' ? 'selected' : '' }}>
-                                    Customer
+                                <option value="staff">Staff
                                 </option>
                             </select>
                             @error('role')
@@ -48,6 +49,10 @@
                             </span>
                             @enderror
                         </div>
+                        @endif
+                        @if ($user->role == 'staff')
+                        <input type="hidden" name="role" value="customer">
+                        @endif
 
 
                         <div class="form-group mb-2">
