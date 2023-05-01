@@ -60,8 +60,8 @@ class UserController extends Controller
         ]);
         $request['password'] = Hash::make($request['password']);
 
-        $user = Auth::user();
-        $is_admin = $user->is_admin;
+        $userLogin = Auth::user();
+        $is_admin = $userLogin->is_admin;
         if ($is_admin) {
             $user->create($request->all());
         } else {
@@ -70,7 +70,7 @@ class UserController extends Controller
 
             Storage::disk('local')->put('public/images/fotoktp' . $path, file_get_contents($file));
 
-            $users->create([
+            $user->create([
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
             ]);
@@ -121,8 +121,8 @@ class UserController extends Controller
             'email' => 'required',
         ]);
 
-        $user = Auth::user();
-        $is_admin = $user->is_admin;
+        $userLogin = Auth::user();
+        $is_admin = $userLogin->is_admin;
         if ($is_admin) {
             $user->update([
                 'name' => $request->name,
