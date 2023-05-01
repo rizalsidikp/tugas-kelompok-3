@@ -124,7 +124,16 @@ class UserController extends Controller
         $user = Auth::user();
         $is_admin = $user->is_admin;
         if ($is_admin) {
-            $user->update($request->all());
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            if (!empty($request['password'])) {
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+            }
         } else {
             if ($request->hasFile('ktp')) {
                 // Delete old image
