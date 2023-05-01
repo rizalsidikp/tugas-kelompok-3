@@ -60,9 +60,6 @@ class UserController extends Controller
         ]);
         $request['password'] = Hash::make($request['password']);
 
-
-        $request['password'] = Hash::make($request['password']);
-
         $user = Auth::user();
         $is_admin = $user->is_admin;
         if ($is_admin) {
