@@ -33,7 +33,7 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Role</th>
-                            @if (!Auth::user()->is_admin == false || $user->role == 'staff')
+                            @if ($user->role == 'staff')
                                 <th>Ttl</th>
                                 <th>Alamat</th>
                                 <th>Foto KTP</th>
@@ -54,10 +54,12 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->role }}</td>
-                                    @if (!Auth::user()->is_admin == false || $user->role == 'staff')
+                                    @if ($user->role == 'staff')
                                         <td>{{ $data->ttl }}</td>
                                         <td>{{ $data->alamat }}</td>
-                                        <td>{{ $data->ktp }}</td>
+                                        <td align="center"><img src="{{ asset('storage/images/fotoktp/' . $data->ktp) }}"
+                                                alt="" height="100px">
+                                        </td>
                                     @endif
                                     <td>
                                         <form action="{{ route('users.destroy', $data->id) }}" method="POST">

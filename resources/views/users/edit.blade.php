@@ -33,10 +33,19 @@
                             </div>
 
                             <div class="form-group mb-2">
-                                <label>Role</label>
-                                <input type="text" name="role" placeholder="Role" class="form-control"
-                                    required="required" value="{{ $datauser->role }}"
-                                    class="@error('role') is-invalid @enderror">
+                                <label for="role">Role</label>
+                                <select id="role" name="role"
+                                    class="form-control @error('role') is-invalid @enderror" required>
+                                    <option value="">Pilih Role</option>
+                                    <option value="staff" {{ $datauser->role == 'staff' ? 'selected' : '' }}>Staff</option>
+                                    <option value="customer" {{ $datauser->role == 'customer' ? 'selected' : '' }}>Customer
+                                    </option>
+                                </select>
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="form-group mb-2">
@@ -58,19 +67,40 @@
                                     required="required" class="@error('rtype') is-invalid @enderror">
                             </div>
 
-                            @if ($datauser->role == 'staff')
+                            @if ($user->role == 'staff')
                                 <div class="form-group mb-2">
                                     <label>Tempat Tanggal Lahir</label>
                                     <input type="text" name="ttl" placeholder="ttl" class="form-control"
                                         required="required" value="{{ $datauser->ttl }}"
                                         class="@error('ttl') is-invalid @enderror">
                                 </div>
+
+                                <div class="form-group mb-2">
+                                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                                    <select id="jenis_kelamin" name="jenis_kelamin"
+                                        class="form-control @error('jenis_kelamin') is-invalid @enderror" required>
+                                        <option value="">Pilih</option>
+                                        <option value="laki-laki"
+                                            {{ $datauser->jenis_kelamin == 'laki-laki' ? 'selected' : '' }}>Laki-laki
+                                        </option>
+                                        <option value="perempuan"
+                                            {{ $datauser->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan
+                                        </option>
+                                    </select>
+                                    @error('jenis_kelamin')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group mb-2">
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" placeholder="alamat" class="form-control"
                                         required="required" value="{{ $datauser->alamat }}"
                                         class="@error('alamat') is-invalid @enderror">
                                 </div>
+
                                 <div class="form-group mb-2">
                                     <label>Upload KTP</label>
                                     <input type="file" name="ktp" placeholder="ktp" class="form-control"

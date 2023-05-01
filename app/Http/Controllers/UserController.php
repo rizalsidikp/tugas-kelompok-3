@@ -67,13 +67,19 @@ class UserController extends Controller
         else
         {
             $file = $request->file('ktp');
-            $path = time() . '_' . $request-> nama . '.' . $file->getClientOriginalExtension();
+            $path = time() . '_' . $request-> name . '.' . $file->getClientOriginalExtension();
     
-            Storage::disk('local')->put('public/images/fotoktp' . $path, file_get_contents($file));
+            Storage::disk('local')->put('public/images/fotoktp/' . $path, file_get_contents($file));
 
             $users ->create([
-                'nama' => $request->nama,
-                'deskripsi' => $request->deskripsi,
+                'name' => $request->name,
+                'role' => $request->role,
+                'email' => $request->email,
+                'password' => $request->password,
+                'ttl' => $request->ttl,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->email,
+                'ktp' => $path
             ]);
         }
         
@@ -124,7 +130,38 @@ class UserController extends Controller
             'role' => 'required',
         ]);
 
-        $user->update($request->all());
+        $user = Auth::user();
+        $is_admin = $user->is_admin;
+        if ($is_admin)
+        {
+            $user->update($request->all());
+        }
+        else
+        {
+            if ($request->hasFile('ktp')) {
+                // Delete old image
+                Storage::disk('public')->delete('images/fotoktp' . $product->gambar);
+        
+                // Upload new image
+                $file = $request->file('ktp');
+                $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+                Storage::disk('public')->putFileAs('images/fotoktp', $file, $path);
+        
+                // Update product with new image path
+                $user->ktp = $path;
+
+                $user ->update([
+                    'name' => $request->name,
+                    'role' => $request->role,
+                    'email' => $request->email,
+                    'password' => $request->password,
+                    'ttl' => $request->ttl,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'alamat' => $request->email,
+                    'ktp' => $path
+                ]);
+            }
+        }
 
         return redirect()->route('users.index')
             ->with('success', 'customer Update successfully.');

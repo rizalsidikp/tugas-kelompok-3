@@ -36,7 +36,6 @@
                                 <select id="role" name="role"
                                     class="form-control @error('role') is-invalid @enderror" required>
                                     <option value="">Pilih Role</option>
-                                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                                     <option value="staff" {{ old('role') == 'staff' ? 'selected' : '' }}>Staff</option>
                                     <option value="customer" {{ old('role') == 'customer' ? 'selected' : '' }}>Customer
                                     </option>
@@ -74,11 +73,32 @@
                                     <input type="text" name="ttl" placeholder="ttl" class="form-control"
                                         required="required" class="@error('ttl') is-invalid @enderror">
                                 </div>
+
+                                <div class="form-group mb-2">
+                                    <label for="jenis_kelamin">Role</label>
+                                    <select id="jenis_kelamin" name="jenis_kelamin"
+                                        class="form-control @error('role') is-invalid @enderror" required>
+                                        <option value="">Pilih</option>
+                                        <option value="laki-laki"
+                                            {{ old('jenis_kelamin') == 'laki-laki' ? 'selected' : '' }}>Laki-laki
+                                        </option>
+                                        <option value="perempuan"
+                                            {{ old('jenis_kelamin') == 'perempuan' ? 'selected' : '' }}>Perempuan
+                                        </option>
+                                    </select>
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group mb-2">
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" placeholder="alamat" class="form-control"
                                         required="required" class="@error('alamat') is-invalid @enderror">
                                 </div>
+
                                 <div class="form-group mb-2">
                                     <label>Upload KTP</label>
                                     <input type="file" name="ktp" placeholder="ktp" class="form-control"
