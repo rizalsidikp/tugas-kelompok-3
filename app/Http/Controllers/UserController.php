@@ -20,17 +20,15 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $is_admin = $user->is_admin;
-        if ($is_admin)
-        {
+        if ($is_admin) {
             $users = User::all();
+        } else {
+            $users = User::where('role', 'customer')->get();
+            ;
         }
-        else
-        {
-            $users = User::where('role', 'customer')->get();;
-        }
-        
-      
-        return view('users.index',compact('users'));
+
+
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -53,7 +51,7 @@ class UserController extends Controller
     public function store(Request $request, User $user)
     {
         //
-        $request->validate( [
+        $request->validate([
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -61,9 +59,9 @@ class UserController extends Controller
         ]);
 
         $user->create($request->all());
-       
+
         return redirect()->route('users.index')
-                        ->with('success','customer created successfully.');
+            ->with('success', 'customer created successfully.');
     }
 
     /**
@@ -75,7 +73,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        return view('users.show',compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -84,10 +82,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $datauser)
+    public function edit(User $user)
     {
         //
-        return view('users.edit',compact('datauser'));
+        $datauser = $user;
+        return view('users.edit', compact('datauser'));
     }
 
     /**
@@ -100,7 +99,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $request->validate( [
+        $request->validate([
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -108,9 +107,9 @@ class UserController extends Controller
         ]);
 
         $user->update($request->all());
-       
+
         return redirect()->route('users.index')
-                        ->with('success','customer Update successfully.');
+            ->with('success', 'customer Update successfully.');
     }
 
     /**
@@ -122,8 +121,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-       
+
         return redirect()->route('users.index')
-                        ->with('success','customer Delete successfully.');
+            ->with('success', 'customer Delete successfully.');
     }
 }
