@@ -84,7 +84,7 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-            ->with('success', 'customer created successfully.');
+            ->with('success', 'User Created Successfully.');
     }
 
     /**
@@ -170,7 +170,7 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index')
-            ->with('success', 'customer Update successfully.');
+            ->with('success', 'User Update Successfully.');
     }
 
     /**
@@ -184,6 +184,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'customer Delete successfully.');
+            ->with('success', 'User Delete Successfully.');
     }
 }
