@@ -33,6 +33,20 @@
                             </div>
 
                             <div class="form-group mb-2">
+                                <label>Role</label>
+                                <input type="text" name="role" placeholder="Role" class="form-control"
+                                    required="required" value="{{ $datauser->role }}"
+                                    class="@error('role') is-invalid @enderror">
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label>Email</label>
+                                <input type="text" name="email" placeholder="email" class="form-control"
+                                    required="required" value="{{ $datauser->email }}"
+                                    class="@error('email') is-invalid @enderror">
+                            </div>
+
+                            <div class="form-group mb-2">
                                 <label for="role">Role</label>
                                 <select id="role" name="role"
                                     class="form-control @error('role') is-invalid @enderror" required>
@@ -49,58 +63,24 @@
                             </div>
 
                             <div class="form-group mb-2">
-                                <label>Email</label>
-                                <input type="text" name="email" placeholder="email" class="form-control"
-                                    required="required" value="{{ $datauser->email }}"
-                                    class="@error('email') is-invalid @enderror">
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label>Password</label>
-                                <input type="text" name="password" placeholder="password" class="form-control"
-                                    required="required" class="@error('password') is-invalid @enderror">
-                            </div>
-
-                            <div class="form-group mb-2">
                                 <label>Retype Password</label>
-                                <input type="text" name="rtype" placeholder="rtype" class="form-control"
+                                <input type="password" name="rtype" placeholder="retype password" class="form-control"
                                     required="required" class="@error('rtype') is-invalid @enderror">
                             </div>
 
-                            @if ($user->role == 'staff')
+                            @if ($datauser->role == 'staff')
                                 <div class="form-group mb-2">
                                     <label>Tempat Tanggal Lahir</label>
                                     <input type="text" name="ttl" placeholder="ttl" class="form-control"
                                         required="required" value="{{ $datauser->ttl }}"
                                         class="@error('ttl') is-invalid @enderror">
                                 </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                                    <select id="jenis_kelamin" name="jenis_kelamin"
-                                        class="form-control @error('jenis_kelamin') is-invalid @enderror" required>
-                                        <option value="">Pilih</option>
-                                        <option value="laki-laki"
-                                            {{ $datauser->jenis_kelamin == 'laki-laki' ? 'selected' : '' }}>Laki-laki
-                                        </option>
-                                        <option value="perempuan"
-                                            {{ $datauser->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan
-                                        </option>
-                                    </select>
-                                    @error('jenis_kelamin')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
                                 <div class="form-group mb-2">
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" placeholder="alamat" class="form-control"
                                         required="required" value="{{ $datauser->alamat }}"
                                         class="@error('alamat') is-invalid @enderror">
                                 </div>
-
                                 <div class="form-group mb-2">
                                     <label>Upload KTP</label>
                                     <input type="file" name="ktp" placeholder="ktp" class="form-control"
@@ -109,14 +89,68 @@
                                 </div>
                             @endif
 
-                            <button type="submit" class="btn btn-success">SIMPAN</button>
-                            <button type="reset" class="btn btn-warning">RESET</button>
-                            <button type="button" class="btn btn-danger" onclick="history.back()">CANCEL</button>
-                        </form>
+                            <<<<<<< HEAD <div class="form-group mb-2">
+                                <label>Retype Password</label>
+                                <input type="text" name="rtype" placeholder="rtype" class="form-control"
+                                    required="required" class="@error('rtype') is-invalid @enderror">
                     </div>
+
+                    @if ($user->role == 'staff')
+                        <div class="form-group mb-2">
+                            <label>Tempat Tanggal Lahir</label>
+                            <input type="text" name="ttl" placeholder="ttl" class="form-control" required="required"
+                                value="{{ $datauser->ttl }}" class="@error('ttl') is-invalid @enderror">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="jenis_kelamin">Jenis Kelamin</label>
+                            <select id="jenis_kelamin" name="jenis_kelamin"
+                                class="form-control @error('jenis_kelamin') is-invalid @enderror" required>
+                                <option value="">Pilih</option>
+                                <option value="laki-laki" {{ $datauser->jenis_kelamin == 'laki-laki' ? 'selected' : '' }}>
+                                    Laki-laki
+                                </option>
+                                <option value="perempuan" {{ $datauser->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>
+                                    Perempuan
+                                </option>
+                            </select>
+                            @error('jenis_kelamin')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label>Alamat</label>
+                            <input type="text" name="alamat" placeholder="alamat" class="form-control"
+                                required="required" value="{{ $datauser->alamat }}"
+                                class="@error('alamat') is-invalid @enderror">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label>Upload KTP</label>
+                            <input type="file" name="ktp" placeholder="ktp" class="form-control"
+                                required="required" value="{{ $datauser->ktp }}"
+                                class="@error('ktp') is-invalid @enderror">
+                        </div>
+                    @endif
+
+                    <button type="submit" class="btn btn-success">SIMPAN</button>
+                    <button type="reset" class="btn btn-warning">RESET</button>
+                    <button type="button" class="btn btn-danger" onclick="history.back()">CANCEL</button>
+                    </form>
                 </div>
+                =======
+                <button type="submit" class="btn btn-success">SIMPAN</button>
+                <button type="reset" class="btn btn-warning">RESET</button>
+                <button type="button" class="btn btn-danger" onclick="history.back()">CANCEL</button>
+                </form>
+                >>>>>>> 7e139596ffae248397721516e31ed7384f50c2ed
             </div>
         </div>
+    </div>
+    </div>
     </div>
 @endsection
 @section('layout-scripts')
