@@ -40,8 +40,8 @@
 
                         <div class="form-group mb-2">
                             <label for="role">Role</label>
-                            <select id="role" name="role" class="form-control @error('role') is-invalid @enderror"
-                                required>
+                            <select disabled id="role" name="role"
+                                class="form-control @error('role') is-invalid @enderror" required>
                                 <option value="">Pilih Role</option>
                                 <option value="staff" {{ $datauser->role == 'staff' ? 'selected' : '' }}>Staff</option>
                                 <option value="customer" {{ $datauser->role == 'customer' ? 'selected' : '' }}>Customer
