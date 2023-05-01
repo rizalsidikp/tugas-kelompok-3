@@ -58,6 +58,8 @@ class UserController extends Controller
             'password' => 'required',
             'role' => 'required',
         ]);
+        $request['password'] = Hash::make($request['password']);
+
 
         $user = Auth::user();
         $is_admin = $user->is_admin;
@@ -65,11 +67,11 @@ class UserController extends Controller
             $user->create($request->all());
         } else {
             $file = $request->file('ktp');
-            $path = time() . '_' . $request-> nama . '.' . $file->getClientOriginalExtension();
-    
+            $path = time() . '_' . $request->nama . '.' . $file->getClientOriginalExtension();
+
             Storage::disk('local')->put('public/images/fotoktp' . $path, file_get_contents($file));
 
-            $users ->create([
+            $users->create([
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
             ]);
@@ -126,25 +128,22 @@ class UserController extends Controller
 
         $user = Auth::user();
         $is_admin = $user->is_admin;
-        if ($is_admin)
-        {
+        if ($is_admin) {
             $user->update($request->all());
-        }
-        else
-        {
+        } else {
             if ($request->hasFile('ktp')) {
                 // Delete old image
                 Storage::disk('public')->delete('images/fotoktp' . $product->gambar);
-        
+
                 // Upload new image
                 $file = $request->file('ktp');
                 $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
                 Storage::disk('public')->putFileAs('images/fotoktp', $file, $path);
-        
+
                 // Update product with new image path
                 $user->ktp = $path;
 
-                $user ->update([
+                $user->update([
                     'name' => $request->name,
                     'role' => $request->role,
                     'email' => $request->email,
