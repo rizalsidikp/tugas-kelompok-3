@@ -34,11 +34,11 @@
                 <div class="menu-item" onclick="onClickMenu('/product')">Product</div>
                 <div class="menu-item" onclick="onClickMenu('/order')">Order</div>
                 @if ($user->is_admin == true || $user->role == 'staff')
-                    <div class="menu-item">Customer</div>
+                    <div class="menu-item" onclick="onClickMenu('/users')">Customer</div>
                 @else
                 @endif
                 @if ($user->is_admin == true)
-                    <div class="menu-item">User</div>
+                    <div class="menu-item" onclick="onClickMenu('/users')">User</div>
                 @else
                 @endif
             </div>

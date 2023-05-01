@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +18,19 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
-        $users = User::latest()->paginate(5);
+        $user = Auth::user();
+        $is_admin = $user->is_admin;
+        if ($is_admin)
+        {
+            $users = User::all();
+        }
+        else
+        {
+            $users = User::where('role', 'customer')->get();;
+        }
+        
       
-        return view('users.index',compact('users'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -40,7 +50,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         //
         $request->validate( [
@@ -50,7 +60,7 @@ class CustomerController extends Controller
             'role' => 'required',
         ]);
 
-        User::create($request->all());
+        $user->create($request->all());
        
         return redirect()->route('users.index')
                         ->with('success','customer created successfully.');
@@ -87,9 +97,17 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        User->update($request->all());
+        //
+        $request->validate( [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+
+        $user->update($request->all());
        
         return redirect()->route('users.index')
                         ->with('success','customer Update successfully.');
@@ -101,9 +119,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        User->delete();
+        $user->delete();
        
         return redirect()->route('users.index')
                         ->with('success','customer Delete successfully.');
