@@ -120,11 +120,8 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'role' => 'required',
         ]);
-
-        $request['password'] = Hash::make($request['password']);
 
         $user = Auth::user();
         $is_admin = $user->is_admin;
@@ -147,12 +144,17 @@ class UserController extends Controller
                     'name' => $request->name,
                     'role' => $request->role,
                     'email' => $request->email,
-                    'password' => $request->password,
                     'ttl' => $request->ttl,
                     'jenis_kelamin' => $request->jenis_kelamin,
                     'alamat' => $request->email,
                     'ktp' => $path
                 ]);
+
+                if (!empty($request['password'])) {
+                    $user->update([
+                        'password' => Hash::make($request->password),
+                    ]);
+                }
             }
         }
 
