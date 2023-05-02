@@ -13,6 +13,8 @@ class Transaction extends Model
         'orders_id',
         'product_id',
         'amount',
+        'harga_beli',
+        'harga_jual',
     ];
 
     public function order()

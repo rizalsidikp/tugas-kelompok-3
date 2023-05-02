@@ -18,8 +18,7 @@ class OrderController extends Controller
         $user_id = Auth::id();
         $carts = Cart::where('user_id', $user_id)->get();
 
-        if($carts == null )
-        {
+        if ($carts == null) {
             return Redirect::back();
         }
 
@@ -27,8 +26,7 @@ class OrderController extends Controller
             'user_id' => $user_id
         ]);
 
-        foreach ($carts as $cart)
-        {
+        foreach ($carts as $cart) {
 
             $product = product::find($cart->product_id);
 
@@ -39,7 +37,9 @@ class OrderController extends Controller
             Transaction::create([
                 'amount' => $cart->amount,
                 'orders_id' => $order->id,
-                'product_id' => $cart->product_id
+                'product_id' => $cart->product_id,
+                'harga_beli' => $product->harga_beli,
+                'harga_jual' => $product->harga_jual
             ]);
 
             $cart->delete();
@@ -53,26 +53,21 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $is_admin = $user->is_admin || $user->role == 'staff';
-        if ($is_admin)
-        {
+        if ($is_admin) {
             $orders = orders::all();
-        }
-        else
-        {
+        } else {
             $orders = orders::where('user_id', $user->id)->get();
         }
-        
+
         return view('orders.index_order', compact('orders'));
     }
 
     public function show_order(orders $order)
-    
     {
         $user = Auth::user();
         $is_admin = $user->is_admin || $user->role == 'staff';
 
-        if ($is_admin || $order->user_id == $user->id)
-        {
+        if ($is_admin || $order->user_id == $user->id) {
             return view('orders.show_order', compact('order'));
         }
 

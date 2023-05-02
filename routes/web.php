@@ -30,6 +30,7 @@ Route::middleware(['staff', 'admin', 'addUserData'])->group(function () {
   Route::delete('/product/{product}', [\App\Http\Controllers\ProductController::class, 'delete_product'])->name('delete_product');
   Route::post('/order/{order}/confirm', [\App\Http\Controllers\OrderController::class, 'confirm_payment'])->name('confirm_payment');
 
+  Route::get('/report/product/{product}', [\App\Http\Controllers\TransactionController::class, 'indexByProduct'])->name('report_item_product');
 });
 
 Route::middleware(['admin', 'addUserData'])->group(function () {
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'addUserData'])->group(function () {
   Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
   Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index_product'])->name('index_product');
   Route::get('/product/{product}', [\App\Http\Controllers\ProductController::class, 'show_product'])->name('show_product');
- 
+
   Route::post('/cart/{product}', [\App\Http\Controllers\CartController::class, 'add_to_cart'])->name('add_to_cart');
   Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show_cart'])->name('show_cart');
   Route::patch('/cart/{cart}', [\App\Http\Controllers\CartController::class, 'update_cart'])->name('update_cart');
