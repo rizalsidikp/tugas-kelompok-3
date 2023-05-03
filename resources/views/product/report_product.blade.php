@@ -72,7 +72,7 @@ Report {{ $product->nama }} -
             <th scope="col" class="text-center">Order ID</th>
             <th scope="col" class="text-center">Amount</th>
             <th scope="col" class="text-center">HPP</th>
-            <th scope="col" class="text-center">Harga Beli</th>
+            <th scope="col" class="text-center">Harga Jual</th>
           </tr>
         </thead>
         <tbody>

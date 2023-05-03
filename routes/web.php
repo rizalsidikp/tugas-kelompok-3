@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +29,8 @@ Route::middleware(['staff', 'admin', 'addUserData'])->group(function () {
   Route::post('/order/{order}/confirm', [\App\Http\Controllers\OrderController::class, 'confirm_payment'])->name('confirm_payment');
 
   Route::get('/report/product/{product}', [\App\Http\Controllers\TransactionController::class, 'indexByProduct'])->name('report_item_product');
+
+  Route::get('/report', [\App\Http\Controllers\TransactionController::class, 'index'])->name('report_index');
 });
 
 Route::middleware(['admin', 'addUserData'])->group(function () {
