@@ -18,14 +18,6 @@
     </div>
     @endif
     <h1>List of Users</h1>
-    <div class="row mb-5">
-        <div class="col-xs-12 col-md-8">
-
-        </div>
-        <div class="col-xs-12 justify-center">
-            <canvas id="grades-chart"></canvas>
-        </div>
-    </div>
     <div class="row justify-center">
         <div class="col-xs-12 col-md-12 text-center">
             <table class="table table-striped" style="margin-bottom: 60px;">

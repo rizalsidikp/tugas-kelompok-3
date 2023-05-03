@@ -17,7 +17,7 @@ class Transaction extends Model
         'harga_jual',
     ];
 
-    public function order()
+    public function orders()
     {
         return $this->belongsTo(orders::class);
     }
