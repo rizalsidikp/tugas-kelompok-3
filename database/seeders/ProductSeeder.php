@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 
 class ProductSeeder extends Seeder
@@ -22,7 +23,7 @@ class ProductSeeder extends Seeder
                 'stock' => 50,
                 'harga_beli' => 50000,
                 'harga_jual' => 75000,
-                'gambar' => ""
+                'gambar' => 'unisex-t-shirt.jpg'
             ],
             [
                 'nama' => 'T-Shirt Basic',
@@ -31,7 +32,7 @@ class ProductSeeder extends Seeder
                 'stock' => 30,
                 'harga_beli' => 30000,
                 'harga_jual' => 50000,
-                'gambar' => ""
+                'gambar' => 'basic-tshirt.jpg'
             ],
             [
                 'nama' => 'Sneakers Casual',
@@ -40,7 +41,7 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'harga_beli' => 50000,
                 'harga_jual' => 80000,
-                'gambar' => ""
+                'gambar' => 'sneaker-casual.jpg'
             ],
             [
                 'nama' => 'Sneakers Running',
@@ -49,7 +50,7 @@ class ProductSeeder extends Seeder
                 'stock' => 20,
                 'harga_beli' => 55000,
                 'harga_jual' => 95000,
-                'gambar' => ""
+                'gambar' => 'sneaker-running.jpg'
             ],
             [
                 'nama' => 'Kaftan Wanita',
@@ -58,7 +59,7 @@ class ProductSeeder extends Seeder
                 'stock' => 30,
                 'harga_beli' => 60000,
                 'harga_jual' => 80000,
-                'gambar' => ""
+                'gambar' => 'kaftan-wanita.jpg'
             ],
             [
                 'nama' => 'Backpack Classic',
@@ -67,7 +68,7 @@ class ProductSeeder extends Seeder
                 'stock' => 15,
                 'harga_beli' => 60000,
                 'harga_jual' => 90000,
-                'gambar' => ""
+                'gambar' => 'backpac-classic.jpg'
             ],
             [
                 'nama' => 'Headset Earbud',
@@ -76,7 +77,7 @@ class ProductSeeder extends Seeder
                 'stock' => 25,
                 'harga_beli' => 25000,
                 'harga_jual' => 60000,
-                'gambar' => ""
+                'gambar' => 'headset-earbuds.jpg'
             ],
             [
                 'nama' => 'Sweatshirt Hoodie',
@@ -85,7 +86,7 @@ class ProductSeeder extends Seeder
                 'stock' => 15,
                 'harga_beli' => 55000,
                 'harga_jual' => 90000,
-                'gambar' => ""
+                'gambar' => 'Sweatshirt-Hoodie.jpg'
             ],
             [
                 'nama' => 'Buku Non-Fiksi',
@@ -94,7 +95,7 @@ class ProductSeeder extends Seeder
                 'stock' => 5,
                 'harga_beli' => 40000,
                 'harga_jual' => 80000,
-                'gambar' => ""
+                'gambar' => 'buku-non-fiksi.jpg'
             ],
             [
                 'nama' => 'Blouse Chiffon',
@@ -103,7 +104,7 @@ class ProductSeeder extends Seeder
                 'stock' => 12,
                 'harga_beli' => 55000,
                 'harga_jual' => 95000,
-                'gambar' => ""
+                'gambar' => 'Blouse-Chiffon.jpg'
             ],
         ];
         for ($i = 0; $i < 10; $i++) {
